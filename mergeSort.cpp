@@ -135,6 +135,8 @@ void mergeSortComcor(int *arr, int l, int r, sf::RenderWindow &janela, int TAMAN
 
 void menu(int *fatz, sf::RenderWindow &janela, std::string mensagem){
 
+    int tamanhoMaximo = 999;
+
     sf::Texture textura;
 
     if(!textura.loadFromFile("backgorund.png")){
@@ -173,7 +175,6 @@ void menu(int *fatz, sf::RenderWindow &janela, std::string mensagem){
     botao.setOutlineColor(sf::Color::Black);
     botao.setPosition(550, 400);
 
-     int tamanhoMaximo = 999;
 
     bool concluido = false;
     while (!concluido) {
