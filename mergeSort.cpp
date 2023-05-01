@@ -3,7 +3,7 @@
 #include <thread>
 #include <iostream>
 
-using namespace std::chrono_literals;
+using namespace std;
 
 
 
@@ -78,6 +78,7 @@ void mergeSort(int *arr, int l, int r, sf::RenderWindow &janela, int TAMANHO_ARR
         janela.display();
         std::this_thread::sleep_for(velocidade);
     }
+
 }
 
 
@@ -172,7 +173,7 @@ void menu(int *fatz, sf::RenderWindow &janela, std::string mensagem){
     botao.setOutlineColor(sf::Color::Black);
     botao.setPosition(550, 400);
 
-    int tamanhoMaximo = 500;
+     int tamanhoMaximo = 999;
 
     bool concluido = false;
     while (!concluido) {
@@ -236,6 +237,16 @@ int main()
 {
     sf::RenderWindow janela(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "Merge Sort");
 
+    sf::Texture textura;
+
+    if(!textura.loadFromFile("backgorund.png")){
+        printf("Não foi possivel carregar o arquivo\n");
+    }
+
+    sf::Sprite img;
+
+    img.setTexture(textura);
+
     int TAMANHO_ARRAY = 10;
     int velocidade;
 
@@ -243,6 +254,10 @@ int main()
 
     menu(&TAMANHO_ARRAY, janela, "Digite o tamanho do vetor:");
     menu(&velocidade, janela, "Digite a atualizacao de cada etapa em ms:");
+
+    janela.clear();
+    janela.draw(img);
+    janela.display();
 
     std::chrono::milliseconds velocidadedef(velocidade);
 
@@ -293,6 +308,15 @@ int main()
                         case sf::Keyboard::D:
 
                             mergeSort(arr, 0, TAMANHO_ARRAY - 1,janela, TAMANHO_ARRAY, velocidadedef);
+
+                            break;
+
+
+                        case sf::Keyboard::Space:
+
+                            janela.clear();
+
+                            janela.display();
 
                             break;
 
